@@ -28,7 +28,6 @@ class GaussSeidel {
   private:
     int max_iterations_;
     double convergence_tolerance_;
-
 };
 
 }

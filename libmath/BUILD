@@ -13,3 +13,28 @@ cc_test(
     "@com_google_googletest//:gtest_main",
   ]
 )
+
+cc_library(
+  name = "point",
+  hdrs = ["point.h"],
+  visibility = ["//visibility:public"],
+)
+
+cc_library(
+  name = "vector",
+  srcs = ["vector.cc"],
+  hdrs = ["vector.h"],
+  visibility = ["//visibility:public"],
+  deps = [
+    ":point",
+  ]
+)
+
+cc_test(
+  name = "vector_test",
+  srcs = ["vector_test.cc"],
+  deps = [
+    ":vector",
+    "@com_google_googletest//:gtest_main",
+  ]
+)
