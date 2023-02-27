@@ -33,6 +33,15 @@ class Vector {
     /** Computes the new set of points by moving the specified point by the specified distance along the axis. */
     Point Project(double distance, const Point& start) const;
 
+    /** Magnitude along the x axis. */
+    double MagnitudeX() const;
+  
+    /** Magnitude along the y axis. */
+    double MagnitudeY() const;
+  
+    /** Magnitude along the z axis. */
+    double MagnitudeZ() const;
+
     /** Decomposes the vector along the axes. */
     void Decompose(double& x, double& y, double& z) const;
     void Decompose(double& x, double& y) const;

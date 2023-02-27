@@ -54,16 +54,27 @@ Point Vector::Project(double distance, const Point& start) const {
   return p;
 }
 
+double Vector::MagnitudeX() const {
+  return Magnitude() * std::cos(Angle(kAxisX));
+}
+
+double Vector::MagnitudeY() const {
+  return Magnitude() * std::cos(Angle(kAxisY));
+}
+
+double Vector::MagnitudeZ() const {
+  return Magnitude() * std::cos(Angle(kAxisZ));
+}
+
 void Vector::Decompose(double& x, double& y, double& z) const {
-  double magnitude = Magnitude();
-  x = magnitude * std::cos(Angle(kAxisX));
-  y = magnitude * std::cos(Angle(kAxisY));
-  z = magnitude * std::cos(Angle(kAxisZ));
+  x = MagnitudeX();
+  y = MagnitudeY();
+  z = MagnitudeZ();
 }
 
 void Vector::Decompose(double& x, double& y) const {
-  double dont_care;
-  Decompose(x, y, dont_care);
+  x = MagnitudeX();
+  x = MagnitudeY();
 }
 
 }
