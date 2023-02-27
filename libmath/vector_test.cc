@@ -1,5 +1,7 @@
 #include "libmath/vector.h"
 
+#include <cmath>
+
 #include "gtest/gtest.h"
 
 namespace libmath {
@@ -105,6 +107,17 @@ TEST(VectorTest, Project2d) {
   EXPECT_DOUBLE_EQ(projected.x, e.x);
   EXPECT_DOUBLE_EQ(projected.y, e.y);
   EXPECT_DOUBLE_EQ(projected.z, 0);
+}
+
+TEST(VectorTest, Decompose) {
+  Vector v(13, 7, 19);
+  double x_mag = 0;
+  double y_mag = 0;
+  double z_mag = 0;
+
+  v.Decompose(x_mag, y_mag, z_mag);
+  double reconstituted = std::sqrt(x_mag * x_mag + y_mag * y_mag + z_mag * z_mag);
+  EXPECT_DOUBLE_EQ(v.Magnitude(), reconstituted);
 }
 
 }

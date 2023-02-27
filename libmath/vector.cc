@@ -4,6 +4,11 @@
 #include <cmath>
 
 namespace libmath {
+namespace {
+  const Vector kAxisX(Point(0, 0, 0), Point(1, 0, 0));
+  const Vector kAxisY(Point(0, 0, 0), Point(0, 1, 0));
+  const Vector kAxisZ(Point(0, 0, 0), Point(0, 0, 1));
+}
 
 double Vector::Magnitude() const {
   return sqrt(i * i + j * j + k * k);
@@ -47,6 +52,18 @@ Point Vector::Project(double distance, const Point& start) const {
           std::fma(distance, normalized.j, start.y),
           std::fma(distance, normalized.k, start.z));  // fma is x * y + z
   return p;
+}
+
+void Vector::Decompose(double& x, double& y, double& z) const {
+  double magnitude = Magnitude();
+  x = magnitude * std::cos(Angle(kAxisX));
+  y = magnitude * std::cos(Angle(kAxisY));
+  z = magnitude * std::cos(Angle(kAxisZ));
+}
+
+void Vector::Decompose(double& x, double& y) const {
+  double dont_care;
+  Decompose(x, y, dont_care);
 }
 
 }

@@ -33,6 +33,10 @@ class Vector {
     /** Computes the new set of points by moving the specified point by the specified distance along the axis. */
     Point Project(double distance, const Point& start) const;
 
+    /** Decomposes the vector along the axes. */
+    void Decompose(double& x, double& y, double& z) const;
+    void Decompose(double& x, double& y) const;
+
     /** Adds 2 vectors. */
     friend Vector operator+(const Vector& v1, const Vector& v2) {
       Vector v(v1.i + v2.i, v1.j + v2.j, v1.k + v2.k);
